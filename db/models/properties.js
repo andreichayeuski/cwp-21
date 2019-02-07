@@ -14,7 +14,7 @@ module.exports = (sequelize, connection) =>{
 		price:
 			{
 				type: sequelize.INTEGER,
-				allowNull: true,
+				allowNull: false,
 			},
 		currency:
 			{

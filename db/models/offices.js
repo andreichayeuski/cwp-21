@@ -14,7 +14,7 @@ module.exports = (sequelize, connection) =>{
 		website:
 			{
 				type: sequelize.STRING,
-				allowNull: true
+				allowNull: false
 			},
 		address:
 			{
