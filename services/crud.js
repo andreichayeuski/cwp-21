@@ -15,10 +15,10 @@ class CrudService{
 
     async readChunk(options){
         options = Object.assign({}, this.defaults.readChunk, options);
-
+console.log(options);
         let limit = options.limit;
         let offset = (options.page - 1) * options.limit;
-
+console.log(this.repository);
         return await this.repository.findAll({
             limit: limit,
             offset: offset,

@@ -1,6 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const bodyParse = require('body-parser');
+const bodyParser = require('body-parser');
 
 const errors = require('./helpers/error');
 //services
@@ -10,7 +10,8 @@ const PropertiesServices = require('./services/properties');
 const LoggerService = require('./services/logger');
 const CacheService = require('./services/cache');
 
-module.exports = (db, config) => {
+module.exports = (db) => {
+    console.log(db);
     const app = express();
     //services
     const officesService = new OfficesServices(
@@ -31,24 +32,24 @@ module.exports = (db, config) => {
     //controllers
     const logger = require('./global-controllers/logger')(loggerService);
     const cache = require('./global-controllers/cache')(cacheService, loggerService);
-    const error = require('./global-controllers/error');
+    const errorController = require('./global-controllers/error')();
     const apiController = require('./controllers/api')(
         officesService,
         agentsServices,
         propertiesServices,
-        cacheService,
-        config
+        cacheService
     );
 
     //Mounting
     app.use(express.static('public'));
     app.use(cookieParser());
-    app.use(bodyParse.json());
+    app.use(bodyParser.json());
 
     app.use('/api', logger);
     app.use('/api', cache);
     app.use('/api', apiController);
-    app.use('/api', error);
-    
+    app.use('/api', errorController);
+
+
     return app;
 };

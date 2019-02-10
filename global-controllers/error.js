@@ -1,3 +1,3 @@
-module.exports = (error, req, res) => {
-    res.error(error);
-};
+module.exports = () => (error, req, res, next) => {
+        res.error(error);
+    };

@@ -2,7 +2,7 @@ const LRU = require('lru-cache');
 
 class CacheService{
     constructor(){
-        this.cache = LRU({
+        this.cache = new LRU({
             max: 5,
             maxAge: 1000*30
         })

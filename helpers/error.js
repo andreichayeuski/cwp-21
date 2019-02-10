@@ -1,5 +1,4 @@
 const express = require('express');
-
 express.response.error = function(error) {
     if(!error.code){
         error = {

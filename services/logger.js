@@ -2,7 +2,7 @@ const winston = require('winston');
 
 class LoggerService{
     constructor(){
-        this.logger = new winston.Logger({
+        this.logger = new winston.createLogger({
             transports: [
                 new winston.transports.File({
                     level: 'info',

@@ -13,17 +13,17 @@ module.exports = (Sequelize, login = config.login, password = config.password, d
 		port: config.port,
 	});
 
-	const office = Office(Sequelize, sequelize);
-	const agent = Agent(Sequelize, sequelize);
-	const propertie = Propertie(Sequelize, sequelize);
+	const offices = Office(Sequelize, sequelize);
+	const agents = Agent(Sequelize, sequelize);
+	const properties = Propertie(Sequelize, sequelize);
 
-	propertie.belongsTo(agent, { foreignKey: 'agentId' });
-	agent.belongsTo(office, {foreignKey: 'officeId' });
+	properties.belongsTo(agents, { foreignKey: 'agentId' });
+	agents.belongsTo(offices, {foreignKey: 'officeId' });
 
 	return {
-		office,
-		agent,
-		propertie,
+		offices,
+		agents,
+		properties,
 
 		sequelize: sequelize,
 		Sequelize: Sequelize
