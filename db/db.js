@@ -18,7 +18,9 @@ module.exports = (Sequelize, login = config.login, password = config.password, d
 	const properties = Propertie(Sequelize, sequelize);
 
 	properties.belongsTo(agents, { foreignKey: 'agentId' });
-	agents.belongsTo(offices, {foreignKey: 'officeId' });
+    agents.belongsTo(offices, { foreignKey: 'officeId' });
+    offices.hasMany(agents);
+    agents.hasMany(properties);
 
 	return {
 		offices,
